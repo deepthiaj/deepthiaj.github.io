@@ -40,8 +40,7 @@
 
         function filter() {
             let searchKey = document.getElementById("filter").value.toLowerCase().trim();
-            let rows = document.getElementById("vocabs").children[0].children;
-            console.log(rows.length);
+            let rows = document.getElementById("vocabs").children[1].children;
             for (let i = 1; i < rows.length; i++) {
                 for (let j = 0; j < 3; j++) {
                     let col = rows[i].cells[j];
