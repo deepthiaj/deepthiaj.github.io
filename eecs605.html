@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<noscript>
+		<link rel="stylesheet" href="assets/css/noscript.css" />
+	</noscript>
+</head>
+<body>
+
+    <div id="wrapper">
+
+
+        <header id="header" class="alt">
+		</header>
+
+
+		<div id="main">
+
+			<section id="intro" class="main">
+				<div class="spotlight">
+					<div class="content">
+						<header class="major">
+							<h2>Daily Energy Consumption</h2>
+						</header>
+						<p>
+
+							This project is aimed at building a machine learning model that can predict the daily electric energy
+							consumption.
+							The data is taken from the Kaggle. The energy consumption data was available from
+							January - 2011 to August - 2017. The data is cleaned and sorted using Pandas. Matplotlib is used
+							for data visualization. Polynomial+periodic regression is used to build the machine learning model.
+							The hyperparameter d-poly (degree of the polynomial), d-period (number of periodic terms) and
+							the time period (T) are tuned such that it gives the minimum squared error and the best future
+							forecast. The project is implemented using Jupyter notebook. GUI is created using ipywidgets
+							where the user can enter a date and get the prediction for the selected date. The Jupyter notebook
+							is dockerize with the remote Linux server using AWS EC2. Dockerized Jupyter notebook is
+							deployed to the web using Heroku 
+							<a href="https://electric-usage-prediction.herokuapp.com/notebooks/daily_power_consumption_prediction.ipynb" target="_blank">here</a>.
+
+							<img src="images/eecs605proj.png" alt="proj image" />
+
+						</p>
+					</div>
+				</div>
+			</section>
+
+		</div>
+
+		<footer id="footer">
+            <section>
+                <p><a href="./index.html">Home</a></p>
+            </section>
+		</footer>
+
+	</div>
+
+</body>
+</html>
