@@ -13,25 +13,24 @@
 </head>
 
 <body class="is-preload">
-
-
-
-    <header id="header">
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-            </ul>
-        </nav>
-    </header>
-
+    <h5><a href="index.html" style="border: 2px solid white;">Home</a></h5>
     <!-- Wrapper -->
     <div id="wrapper">
 
         <!-- Main -->
         <section id="main" class="wrapper">
             <div class="inner">
-                <h1 class="major">Daily Energy Consumption </h1>
-                This project is aimed at building a machine learning model that can predict the daily electric energy
+                <h4 class="major">Daily Electricity Net Generation</h4>
+
+                <input type="text" id="userdate" placeholder="choose a date">
+                <input id="btnOk" type="submit" value="Get Prediction" onclick="ValidateDateAndGetData()" class="button small">
+                <label id="lblLoading"></label>
+                <label id="lblError" style="color:red"></label>
+                <hr>            
+                <img id="img" src="" />
+                <hr>
+
+                <!-- This project is aimed at building a machine learning model that can predict the daily electric energy
                 consumption.
                 The data is taken from the Kaggle. The energy consumption data was available from
                 January - 2011 to August - 2017. The data is cleaned and sorted using Pandas. Matplotlib is used
@@ -45,9 +44,18 @@
                 <a href="https://electric-usage-prediction.herokuapp.com/notebooks/daily_power_consumption_prediction.ipynb"
                     target="_blank">here</a>.
                 <br>
-                <span class="image"><img src="images/eecs605proj.png" alt="" /></span>
+                <span class="image"><img src="images/eecs605proj.png" alt="" /></span> -->
             </div>
+            
+
         </section>
+
+
+
+
+
+
+
 
     </div>
 
@@ -61,6 +69,45 @@
     <script src="assets/js/breakpoints.min.js"></script>
     <script src="assets/js/util.js"></script>
     <script src="assets/js/main.js"></script>
+
+
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+    <script>
+        $(function () {
+            $("#userdate").datepicker({ dateFormat: 'yy-mm-dd' });
+        });
+
+        function getData(date) {
+
+            $("#lblLoading").text("loading....");
+            $("#userdate").prop("disabled", true);
+            $("#btnOk").prop("disabled", true);
+            var str = '{"user_date": "' + date + '"}'
+            $.post("https://ajly173w13.execute-api.us-east-1.amazonaws.com/prod/", str, function (data, status) {
+                var res = JSON.parse(data.body).outputResultsData;
+                document.getElementById('img')
+                    .setAttribute('src', 'data:image/png;base64,' + res);
+
+                $("#lblLoading").text("");
+                $("#btnOk").prop("disabled", false);
+                $("#userdate").prop("disabled", false);
+            });
+        }
+
+        function ValidateDateAndGetData() {
+            document.getElementById('img').setAttribute('src', '');
+            var userinput = $("#userdate").val();
+            var userinputAsDate = new Date(userinput);
+            if (userinputAsDate.getFullYear() == 2022) {
+                $("#lblError").text("");
+                getData(userinput);
+            } else {
+                $("#lblError").text("Invalid date/year - choose a valid date in the year 2022");
+            }
+        }
+
+    </script>
 
 </body>
 
